@@ -10,14 +10,12 @@ import com.acdeveloper.dashboard.dto.SellerDTO;
 import com.acdeveloper.dashboard.entitites.Seller;
 import com.acdeveloper.dashboard.repositories.SellerRepository;
 
-
-
-
 @Service
 public class SellerService {
 
 	@Autowired
 	private SellerRepository repository;
+	
 	
 	public List<SellerDTO> findAll() {
 		List<Seller> result = repository.findAll();

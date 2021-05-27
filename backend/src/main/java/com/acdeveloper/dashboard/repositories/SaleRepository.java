@@ -1,5 +1,9 @@
 package com.acdeveloper.dashboard.repositories;
 
-public class SaleRepository {
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.acdeveloper.dashboard.entitites.Sale;
+
+public interface SaleRepository extends JpaRepository<Sale, Long> {
 
 }
