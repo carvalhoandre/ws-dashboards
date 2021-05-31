@@ -1,5 +1,7 @@
 package com.acdeveloper.dashboard.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -7,6 +9,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.acdeveloper.dashboard.dto.SaleDTO;
+import com.acdeveloper.dashboard.dto.SaleSucessDTO;
+import com.acdeveloper.dashboard.dto.SaleSumDTO;
 import com.acdeveloper.dashboard.entitites.Sale;
 import com.acdeveloper.dashboard.repositories.SaleRepository;
 import com.acdeveloper.dashboard.repositories.SellerRepository;
@@ -25,5 +29,15 @@ public class SaleService {
 		sellerRepository.findAll();
 		Page<Sale> result = repository.findAll(pageable);
 		return result.map(x -> new SaleDTO(x));
-	}	
+	}
+	
+	@Transactional(readOnly = true)
+	public List<SaleSumDTO> amountGroupdBySeller(){
+		return repository.amountGroupdBySeller();
+	}
+	
+	@Transactional(readOnly = true)
+	public List<SaleSucessDTO> sucessGroupedBySeller(){
+		return repository.sucessGroupedBySeller();
+	}
 }

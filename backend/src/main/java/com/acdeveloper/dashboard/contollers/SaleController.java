@@ -1,5 +1,7 @@
 package com.acdeveloper.dashboard.contollers;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -9,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.acdeveloper.dashboard.dto.SaleDTO;
+import com.acdeveloper.dashboard.dto.SaleSucessDTO;
+import com.acdeveloper.dashboard.dto.SaleSumDTO;
 import com.acdeveloper.dashboard.service.SaleService;
 
 @RestController
@@ -21,6 +25,18 @@ public class SaleController {
 	@GetMapping
 	public ResponseEntity<Page<SaleDTO>> findAll(Pageable pageable) {
 		Page<SaleDTO> list = service.findAll(pageable);
+		return ResponseEntity.ok(list);
+	}
+	
+	@GetMapping(value = "/amount-by-seller")
+	public ResponseEntity<List<SaleSumDTO>> amountGroupdBySeller() {
+		List<SaleSumDTO> list = service.amountGroupdBySeller();
+		return ResponseEntity.ok(list);
+	}
+	
+	@GetMapping(value = "/success-by-seller")
+	public ResponseEntity<List<SaleSucessDTO>> sucessGroupedBySeller() {
+		List<SaleSucessDTO> list = service.sucessGroupedBySeller();
 		return ResponseEntity.ok(list);
 	}
 }
